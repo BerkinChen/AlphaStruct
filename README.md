@@ -3,26 +3,26 @@ Implementation of "AlphaQCM: Alpha Discovery in Finance with Distributional Rein
 
 ### Environment
 
-Requirements: Python 3.9, PyTorch 1.13.1, CUDA 11.6, Qlib, etc.
+Requirements: Python 3.9, PyTorch 1.13.1, CUDA 11.6, and other dependencies.
 
 ### Data Preparation
 
-We utilize the [Qlib](https://github.com/microsoft/qlib#data-preparation) and [baostock](http://baostock.com/baostock) libraries to prepare locally stored stock data. After installing Qlib and baostock, run the script `data_collection/fetch_baostock_data.py` to download the data.
+In line with [AlphaGen](https://github.com/RL-MLDM/alphagen/tree/master), we utilize the [Qlib](https://github.com/microsoft/qlib#data-preparation) and [baostock](http://baostock.com/baostock) libraries to prepare locally stored stock data. After installing Qlib and baostock, run the script `data_collection/fetch_baostock_data.py` to download the data.
 
 ### Running Experiments
 
-Configure the agent's hyperparameters in `qcm_config` and execute the following scripts:
+Configure the agent's hyperparameters in `qcm_config` and execute the following scripts to reproduce the results for AlphaQCM methods:
 ```bash
 python train_qcm_csi300.py --model [qrdqn, iqn] --pool [10, 20, 50, 100] --std-lam [0.5, 1.0, 2.0]
 python train_qcm_csi500.py --model [qrdqn, iqn] --pool [10, 20, 50, 100] --std-lam [0.5, 1.0, 2.0]
 python train_qcm.py --model [qrdqn, iqn] --pool [10, 20, 50, 100] --std-lam [0.5, 1.0, 2.0]
 ```
 
-The generated alpha pools are saved as human-readable CSV files.
+The generated alpha pools are saved as human-readable CSV files. For additional baseline methods, refer to the code in [AlphaGen](https://github.com/RL-MLDM/alphagen/tree/master).
 
 ### Acknowledgements
 
-This project is based on [AlphaGen](https://github.com/RL-MLDM/alphagen/tree/master) and [qf-iqn-qrdqn.pytorch](https://github.com/toshikwa/fqf-iqn-qrdqn.pytorch). AlphaGen provides the alpha discovery environment, while qf-iqn-qrdqn.pytorch supports the distributional RL agent. We thank the contributors of these repositories.
+This project is built upon [AlphaGen](https://github.com/RL-MLDM/alphagen/tree/master) and [qf-iqn-qrdqn.pytorch](https://github.com/toshikwa/fqf-iqn-qrdqn.pytorch). AlphaGen provides the alpha discovery environment, while qf-iqn-qrdqn.pytorch supports the distributional RL agent. We thank the contributors of these repositories.
 
 ### Contact
 
