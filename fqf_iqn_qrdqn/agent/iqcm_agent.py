@@ -34,7 +34,6 @@ class IQCMAgent(BaseAgent):
         self.online_net = IQN(num_actions=self.num_actions,
                               K=K, 
                               num_cosines=num_cosines,
-                              embedding_dim=90,  
                               dueling_net=dueling_net, 
                               noisy_net=noisy_net,
                               require_QCM=True).to(self.device)
@@ -42,7 +41,6 @@ class IQCMAgent(BaseAgent):
         self.target_net = IQN(num_actions=self.num_actions,
                               K=K, 
                               num_cosines=num_cosines, 
-                              embedding_dim=90,  
                               dueling_net=dueling_net,
                               noisy_net=noisy_net,
                               require_QCM=True).to(self.device)
