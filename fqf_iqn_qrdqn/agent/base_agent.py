@@ -179,6 +179,7 @@ class BaseAgent(ABC):
             log_table.loc[i, :] = (expr_str, ic_ret, weight)
 
         if set_indice == 'test':
+            
             log_table.loc[n, :] = ('Ensemble', valid_ic, test_ic)
             log_table.to_csv(f'{save_dir}/test_best_table.csv')
         elif set_indice == 'valid':

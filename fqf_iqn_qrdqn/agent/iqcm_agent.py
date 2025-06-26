@@ -33,27 +33,22 @@ class IQCMAgent(BaseAgent):
         # Online network.
         self.online_net = IQN(num_actions=self.num_actions,
                               K=K, 
-                              num_cosines=num_cosines,
-                              embedding_dim=90,  
+                              num_cosines=num_cosines, 
                               dueling_net=dueling_net, 
                               noisy_net=noisy_net,
                               require_QCM=True).to(self.device)
         # Target network.
         self.target_net = IQN(num_actions=self.num_actions,
                               K=K, 
-                              num_cosines=num_cosines, 
-                              embedding_dim=90,  
-                              dueling_net=dueling_net,
+                              num_cosines=num_cosines, dueling_net=dueling_net,
                               noisy_net=noisy_net,
                               require_QCM=True).to(self.device)
         
         self.online_mean_net = MeanNetwork(num_actions=self.num_actions,
-                                           embedding_dim=90,  
                                            dueling_net=dueling_net,
                                            noisy_net=noisy_net).to(self.device)
         
         self.target_mean_net = MeanNetwork(num_actions=self.num_actions,
-                                           embedding_dim=90,  
                                            dueling_net=dueling_net,
                                            noisy_net=noisy_net).to(self.device)
 
