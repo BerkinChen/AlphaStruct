@@ -33,14 +33,15 @@ class IQCMAgent(BaseAgent):
         # Online network.
         self.online_net = IQN(num_actions=self.num_actions,
                               K=K, 
-                              num_cosines=num_cosines, 
+                              num_cosines=num_cosines,
                               dueling_net=dueling_net, 
                               noisy_net=noisy_net,
                               require_QCM=True).to(self.device)
         # Target network.
         self.target_net = IQN(num_actions=self.num_actions,
                               K=K, 
-                              num_cosines=num_cosines, dueling_net=dueling_net,
+                              num_cosines=num_cosines, 
+                              dueling_net=dueling_net,
                               noisy_net=noisy_net,
                               require_QCM=True).to(self.device)
         
