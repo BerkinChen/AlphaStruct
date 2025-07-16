@@ -3,7 +3,7 @@ Implementation of "AlphaQCM: Alpha Discovery in Finance with Distributional Rein
 
 ### Environment
 
-Requirements: Python 3.9, PyTorch 1.13.1, CUDA 11.6, and other dependencies.
+Requirements: Python 3.8, PyTorch 1.13.1, CUDA 11.6, and other dependencies. Please see alphaqcm_env.yml for more details.
 
 ### Data Preparation
 
