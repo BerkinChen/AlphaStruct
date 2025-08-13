@@ -4,17 +4,17 @@ import argparse
 import torch
 from datetime import datetime
 
-from fqf_iqn_qrdqn.agent import QRQCMAgent, IQCMAgent, FQCMAgent
-from alphagen.data.expression import Feature, FeatureType, Ref, StockData
-from alphagen_qlib.calculator import QLibStockDataCalculator
-from alphagen.models.alpha_pool import AlphaPool
-from alphagen.rl.env.wrapper import AlphaEnv
+from alphastruct.fqf_iqn_qrdqn.agent import QRQCMAgent, IQCMAgent, FQCMAgent
+from alphastruct.alphagen.data.expression import Feature, FeatureType, Ref, StockData
+from alphastruct.alphagen_qlib.calculator import QLibStockDataCalculator
+from alphastruct.alphagen.models.alpha_pool import AlphaPool
+from alphastruct.alphagen.rl.env.wrapper import AlphaEnv
 
 
 def run(args):
 
     # torch.cuda.set_device(args.cuda)
-    config_path = os.path.join('qcm_config', f'{args.model}.yaml')
+    config_path = os.path.join('config/qcm_config', f'{args.model}.yaml')
 
     with open(config_path) as f:
         config = yaml.load(f, Loader=yaml.SafeLoader)
@@ -26,14 +26,14 @@ def run(args):
     instruments: float = 'csi300'
 
     data_train = StockData(instrument=instruments,
-                           start_time='2010-01-01',
-                           end_time='2019-12-31')
+                           start_time='2021-01-01',
+                           end_time='2021-01-31')
     data_valid = StockData(instrument=instruments,
-                           start_time='2020-01-01',
-                           end_time='2020-12-31')
+                           start_time='2021-02-01',
+                           end_time='2021-02-28')
     data_test = StockData(instrument=instruments,
-                          start_time='2021-01-01',
-                          end_time='2022-12-31')
+                          start_time='2021-03-01',
+                          end_time='2021-03-31')
     
     
     train_calculator = QLibStockDataCalculator(data_train, target)
@@ -49,11 +49,11 @@ def run(args):
     name = args.model
     time = datetime.now().strftime("%Y%m%d-%H%M")
     if name in ['qrdqn', 'iqn']:
-        log_dir = os.path.join('AlphaQCM_data/csi300_logs',
+        log_dir = os.path.join('data/csi300_logs',
                            f'pool_{args.pool}_QCM_{args.std_lam}',
                            f"{name}-seed{args.seed}-{time}-N{config['N']}-lr{config['lr']}-per{config['use_per']}-gamma{config['gamma']}-step{config['multi_step']}")
     elif name == 'fqf':
-        log_dir = os.path.join('AlphaQCM_data/csi300_logs',
+        log_dir = os.path.join('data/csi300_logs',
                            f'pool_{args.pool}_QCM_{args.std_lam}',
                            f"{name}-seed{args.seed}-{time}-N{config['N']}-lr{config['quantile_lr']}-per{config['use_per']}-gamma{config['gamma']}-step{config['multi_step']}")
 
